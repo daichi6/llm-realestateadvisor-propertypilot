@@ -1,0 +1,207 @@
+instruction = """
+### Instructions ###
+I want you to act as a principal software engineer. You'll be given a task to determine the parameters of an API call based on the "User's query" below, 
+please modify the conditions and create the appropriate API filter. Provide your answer only for the part within ‘{}’. 
+Do not include any other explanations in your response. Read the below instructions.
+
+— Filter Options (Optional, so not required if not specified in the User's query) —
+
+1. location
+Location details, address, county, neighborhood or Zip code.
+Format: STRING
+Please select the best matching location from the provided list.
+
+### Possible Locations ###
+    {LOCATIONS_STRING}
+
+Example: 'South Loop, Chicago, IL'
+
+* If no specific location mentioned, use 'Chicago, IL'.
+* If query asks about 'Downtown' please use 'The Loop, Chicago, IL'
+
+2. status_type
+For purchase or for rent
+Format: STRING
+Example:
+ForSale
+ForRent
+
+3. home_type
+Property type comma-separated or empty for all types
+Format: STRING
+Example(ForRent):
+Townhomes
+Houses
+Apartments_Condos_Co-ops
+
+Example(ForSale):
+Multi-family
+Apartments
+Houses
+Manufactured
+Condos
+LotsLand
+Townhomes
+
+*If it cannot be determined from the User's query, specification is not necessary.
+
+4. minPrice
+If status_type = ForSale you can filter by min price.
+Format: NUMBER
+Example: 200000
+
+5. maxPrice
+If status_type = ForSale you can filter by max price.
+Format: NUMBER
+Example: 900000
+
+6. rentMinPrice
+If status_type = ForRent you can filter by min rent price.
+Format: NUMBER
+Example: 2000
+
+7. rentMaxPrice
+If status_type = ForRent you can filter by max rent price.
+Format: NUMBER
+Example: 3000
+
+8. bathsMin
+Bathrooms min count
+Format: NUMBER
+Example: 2
+* If a specific number of baths is specified, rather than a range, please enter the same number for both bathsMin and bathsMax.
+
+9. bathsMax
+Bathrooms max count
+Format: NUMBER
+Example: 3
+
+10. bedsMin
+Bedrooms min count
+Format: NUMBER
+Example: 1
+* If a specific number of bedrooms is specified, rather than a range, please enter the same number for both bedsMin and bedsMax.
+
+11. bedsMax
+Bedrooms max count
+Format: NUMBER
+Example: 3
+
+12. sqftMin
+Square Feet min value
+Format: NUMBER
+Example: 600
+
+13. sqftMax
+Square Feet max value
+Format: NUMBER
+Example: 1500
+
+14. buildYearMin
+Year Built min value
+Format: NUMBER
+Example: 1980
+
+15. buildYearMax
+Year Built max value
+Format: NUMBER
+Example: 2023
+
+16. keywords
+Filter with keywords.
+Format: STRING
+Example 1: ‘gym’
+Example 2: ‘pet-friendly, pool, rooftop deck’
+*Not necessary if already specified in another filter or if there is no clear specification in user’s query. Specify conditions that cannot be specified in other filters by using keywords.
+
+17. sort
+Sorting criteria for the results
+Always specify "Newest"
+
+Now, use the following examples to help determine your output.
+
+### Example query ###
+I am looking for a one-bedroom.
+
+### Example Output ###
+{
+"location":"chicago, il",
+"bedsMin":"1",
+"bedsMax":"1",
+"sort":"Newest"
+}
+
+### Example query ###
+I am looking to rent an apartment in South Loop, Chicago, with at least one bedroom and a rent of $3000 or less per month.
+
+### Example Output ###
+{
+"location": "south loop, chicago, il",
+"status_type": "ForRent",
+"home_type": "Apartments_Condos_Co-ops",
+"rentMaxPrice": 3000,
+"bedsMin": 1,
+"sort":"Newest"
+}
+
+### Example query ###
+I am looking to rent an apartment in West Loop, Chicago, with one bedroom and a rent between $2000 and $2500.
+
+### Example Output ###
+{
+"location": "west loop, chicago, il",
+"status_type": "ForRent",
+"home_type": "Apartments_Condos_Co-ops",
+"rentMinPrice": 2500,
+"rentMaxPrice": 3000,
+"bedsMin": 1,
+"bedsMax": 1,
+"sort":"Newest"
+}
+
+### Example query ###
+I want to buy a house in River North with at least two bedrooms.
+
+### Example Output ###
+{
+"location":"river north, chicago, il",
+"status_type": "ForSale",
+"keywords":"river north, chicago, il",
+"bedsMin":"2",
+"sort":"Newest"
+}
+
+### Example query ###
+I am looking for a house around Wicker Park in Chicago. It should be built within the last 30 years and have at least 3 bedrooms. My budget is $1,000,000.
+
+### Example Output ###
+{
+"location": "wicker park, chicago, il",
+"status_type": "ForSale",
+"home_type": "Houses",
+"maxPrice": 1000000,
+"buildYearMin": 1994,
+"sort":"Newest"
+}
+
+### Example query ###
+I am looking to buy a house in Hyde Park. It should be at least 2500 sqft with at least 2 bedrooms and 2 bathrooms. I would also like a backyard.
+
+### Example Output ###
+{
+"location": "hyde park, chicago, il",
+"status_type": "ForSale",
+"home_type": "Houses",
+"sqftMin":2500,
+"bedsMin": 2,
+"bathsMin": 2,
+"keywords": "backyard",
+"sort":"Newest"
+}
+
+
+### User’s query ###
+{USER_QUERY}
+
+### Output ###
+"""

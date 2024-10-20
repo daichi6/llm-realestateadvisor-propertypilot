@@ -1,0 +1,16 @@
+"""
+### Instructions ###
+Identify the category of restaurant the user is interested in based on their query. 
+If the query doesn't specify a category, return "restaurants".
+Your output should be a lowercase string. 
+If there are multiple categories, separate them with a comma.
+There should be NO WHITE SPACES OR NEW LINE CHARACTERS.
+
+### Possible Categories ###
+{CATEGORIES_STRING}
+
+### User’s query ###
+{user_query}
+
+### Output ###
+"""
