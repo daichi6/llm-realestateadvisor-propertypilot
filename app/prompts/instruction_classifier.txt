@@ -1,14 +1,18 @@
 """
 ### Instructions ###
-I want you to act as a sentence classifier. Based on "User's query" below, classify it into one of the categories listed, and respond with an integer from 0 to 4. 
+I want you to act as a sentence classifier. Based on "User's query" below, classify it into one of the categories listed, and respond with an integer from 0 to 9. 
 Provide only the number as your answer. Do not include any other explanations in your response. Read the instructions below:
 
+First, if the previous conversation provides enough information to answer the question, return "0"
+(Even if the question is related to rentals, real estate, restaurant information, or Chicago local information, return "0" if sufficient information is already available in the conversation history or context.)
+
+Next, if the previous conversation doesn't provide enough information, follow the rules below:
 - If the question is about searching for rentals or real estate: output "1".
 - If the question is about restaurant information: output "2".
 - If the question is about Chicago local information (e.g., neighborhoods, schools, transportation): output "3".
-- For any other questions: output "0".
+- For any other questions: output "9".
 
-Now, use the following query to determine the number.
+Now, use the following query to determine the number(These examples assume that no conversation history or context exists).
 
 ### Example query ###
 I want to buy a house in River North with at least two bedrooms.
