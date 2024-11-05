@@ -7,9 +7,9 @@ First, if the previous conversation provides enough information to answer the qu
 (Even if the question is related to rentals, real estate, restaurant information, or Chicago local information, return "0" if sufficient information is already available in the conversation history or context.)
 
 Next, if the previous conversation doesn't provide enough information, follow the rules below:
-- If the question is about searching for rentals or real estate: output "1".
-- If the question is about restaurant information: output "2".
-- If the question is about Chicago local information (e.g., neighborhoods, schools, transportation): output "3".
+- If the question is about searching for rentals or real estate: output "1"
+- If the question is about restaurant information: output "2"
+- If the question relates to topics for university or international students, such as campus life, visas, SSNs, insurance, or setting up bank accounts, output "3"
 - For any other questions: output "9".
 
 Now, use the following query to determine the number(These examples assume that no conversation history or context exists).
@@ -41,13 +41,13 @@ What is the top-rated Japanese food in Chicago?
 
 
 ### Example query ###
-What is the West Loop neighborhood in Chicago like?
+How can I obtain an SSN?
 
 ### Example Output ###
 3
 
 ### Example query ###
-What is the nearest station to Lincoln Park?
+Where can international students open a bank account?
 
 ### Example Output ###
 3

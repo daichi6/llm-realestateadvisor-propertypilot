@@ -13,10 +13,13 @@ from prompt_creation import (
     generate_prompt_apifilter,
     generate_prompt_rag_neighborhood,
     generate_prompt_yelp_advisor,
-    final_output_yelp_advisor
+    final_output_yelp_advisor,
+    generate_prompt_rag_international,
+    generate_prompt_general
 )
 from llm import get_chat_response
 from rag import get_context
+from vector_search import search_similar_chunks, format_chunk_results
 
 
 # initial intent
@@ -93,24 +96,45 @@ def chat_yelp(chat, prompts_dict, user_query):
 
 
 # functions for neighborhood information
-def chat_neighborhood(chat, prompts_dict, user_query, vector_store):
-    context = get_context(user_query, vector_store)
-    print('Context:', context)
-    prompt_rag_neighborhood = generate_prompt_rag_neighborhood(prompts_dict['instruction_rag_neighborhood'], context, user_query)
-    response_neighborhood_final = get_chat_response(chat, prompt_rag_neighborhood)
-    return response_neighborhood_final
+# def chat_neighborhood(chat, prompts_dict, user_query, vector_store):
+#     context = get_context(user_query, vector_store)
+#     print('Context:', context)
+#     prompt_rag_neighborhood = generate_prompt_rag_neighborhood(prompts_dict['instruction_rag_neighborhood'], context, user_query)
+#     response_neighborhood_final = get_chat_response(chat, prompt_rag_neighborhood)
+#     return response_neighborhood_final
+
+
+# functions for international students
+def chat_international(chat, prompts_dict, user_query, vectordb):
+    chunks = search_similar_chunks(vectorstore=vectordb, query=user_query, k=4)
+    chunks_formated = format_chunk_results(
+            chunks,
+            metadata_fields=['source', 'source_type'],
+            include_content=True
+            )
+    print('Contexts:', chunks_formated)
+    prompt_rag_international = generate_prompt_rag_international(prompts_dict['instruction_rag_international'], chunks_formated, user_query)
+    response_international_final = get_chat_response(chat, prompt_rag_international)
+    return response_international_final
+
+
+# functions for general response
+def chat_general(chat, prompts_dict, user_query):
+    prompt_general = generate_prompt_general(prompts_dict['instruction_general'], user_query)
+    response_general_final = get_chat_response(chat, prompt_general)
+    return response_general_final
 
 
 # final
-def chat_all(chat, prompts_dict, user_query, neighborhoods_info, neighborhoods_boundaries, vector_store):
+def chat_all(chat, prompts_dict, user_query, neighborhoods_info, neighborhoods_boundaries, vectordb):
     
     intent_int = intent_classifier(chat, prompts_dict, user_query)
     
     if intent_int == 1:
-        print(chat_property(chat, prompts_dict, user_query, neighborhoods_info, neighborhoods_boundaries))
+        return chat_property(chat, prompts_dict, user_query, neighborhoods_info, neighborhoods_boundaries), intent_int
     elif intent_int == 2:
-        print(chat_yelp(chat, prompts_dict, user_query))
+        return chat_yelp(chat, prompts_dict, user_query), intent_int
     elif intent_int == 3:
-        print(chat_neighborhood(chat, prompts_dict, user_query, vector_store))
+        return chat_international(chat, prompts_dict, user_query, vectordb), intent_int
     else:
-        print(get_chat_response(chat, user_query))
+        return chat_general(chat, prompts_dict, user_query), intent_int

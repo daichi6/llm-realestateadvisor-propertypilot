@@ -1,0 +1,15 @@
+"""
+### Instructions ###
+You will act as an advisor to answer the question described in the 'User's query' below.
+Use the information provided in the 'Context' section below if it contains relevant details for your answer. 
+Refer to the specific chunks related to the question. 
+If you use any part of the context, include its URL in your response.
+
+### User’s query ###
+{USER_QUERY}
+
+### Context ###
+{CONTEXT}
+
+### Output ###
+"""
