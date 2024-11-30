@@ -1,0 +1,15 @@
+Relevance (0-100):
+Definition: Measures how directly the response addresses the user's specific question or request.
+Considerations: Is the response on-topic? Does it focus on the user's main concerns?
+Accuracy (0-100):
+Definition: Assesses the correctness and currentness of the information provided.
+Considerations: Are the facts correct? Is the information up-to-date according to the latest data or policies?
+Clarity (0-100):
+Definition: Evaluates how easily the user can understand the response.
+Considerations: Is the language clear and concise? Is the information well-organized? Are technical terms explained?
+Completeness (0-100):
+Definition: Determines whether the response fully addresses all parts of the user's question.
+Considerations: Are all aspects of the request covered? Is any critical information missing?
+Tone and Empathy (0-100):
+Definition: Looks at the appropriateness of the response's tone and the level of empathy shown towards the user.
+Considerations: Is the tone friendly and professional? Does the response show understanding of the user's situation? Is it culturally sensitive?
