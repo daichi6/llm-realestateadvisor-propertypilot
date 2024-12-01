@@ -1,10 +1,14 @@
-- <div align="center">
-  <img src="images/InternationAlly%20logo.png" alt="InternationAlly" width="200">
+<div align="center">
+  <h1 style="font-size: 48px; font-weight: bold;">InternationAlly: AI-Powered Companion for<br>International Students Moving Abroad</h1>
 </div>
 
-# <p align="center">InternationAlly</p>
+<div align="center">
+  <img src="Documents/InternationAlly%20logo.png" alt="InternationAlly" width="200">
+</div>
 
-**InternationAlly** is an AI-powered assistant designed to simplify the transition for international students moving abroad. Developed under the **PropertyPilot** platform — a visionary initiative aiming to transform the property search and advisory process through AI-driven solutions - InternationAlly is our first specialized product offering, focusing on the unique needs of international students.
+
+**InternationAlly** is an AI-powered trusted international student advisor, helping students feel comfortable and confident in their new foreign environment.
+
 
 ## Table of Contents
 - [1. Motivation](#1-motivation)
@@ -28,9 +32,19 @@
 
 ### Background
 
-As the number of international students in the United States continues to rise, the need for effective support systems becomes increasingly vital. In the 2022/23 academic year, there were over 1 million international students in the U.S., reflecting significant growth from previous years.
+Our project, InternationAlly, was inspired by the personal experiences of our team—three international students who faced common challenges while studying abroad. From finding affordable housing and navigating unfamiliar cities to understanding visa requirements, we struggled to find reliable resources to answer our questions. This inspired us to develop a chatbot solution that could help international students with these issues. 
 
-Embarking on an academic journey abroad is both exciting and challenging for international students. Navigating a new country, culture, and legal system can be overwhelming. While numerous platforms offer property listings or cultural tips, there's a lack of comprehensive solutions that address all the needs of international students in one place.
+<div align="center">
+  <img src="Documents/Problem_Statement_I.jpg">
+</div>
+
+
+Research shows that international student enrollment in the U.S. is rapidly growing, with over 1.5 million students, contributing significantly to the economy. This expanding student population highlights a clear demand for solutions like InternationAlly. By providing accessible, smart support, InternationAlly aims to help international students navigate both academic and everyday challenges.
+
+<div align="center">
+  <img src="Documents/Problem_Statement_II.jpg">
+</div>
+
 
 ### Common Challenges Faced by International Students
 
@@ -38,6 +52,10 @@ Embarking on an academic journey abroad is both exciting and challenging for int
 - **Housing**: Finding safe, affordable housing, understanding lease agreements, and determining the documents needed for renting.
 - **Cultural Differences**: Navigating cultural norms, understanding social etiquette, and overcoming language barriers.
 - **Logistical Issues**: Setting up bank accounts, getting health insurance, finding transportation options, and more.
+
+<div align="center">
+  <img src="Documents/Problem_Statement_III.jpg">
+</div>
 
 InternationAlly bridges these gaps by providing tailored housing options, local insights, and essential support throughout a student's move.
 
@@ -49,11 +67,16 @@ InternationAlly bridges these gaps by providing tailored housing options, local 
 - Offer **guidance** on legal, cultural, and logistical matters to help students adapt smoothly.
 - Act as a **trusted friend and advisor**, simplifying the complexities of moving abroad.
 
----
+<div align="center">
+  <img src="Documents/InternationAlly_Intro.jpg">
+</div>
+
 
 ## 2. Overview of InternationAlly 🗺️
 
-![Project Architecture](images/Updated_diagram.jpg)
+<div align="center">
+  <img src="Documents/Architecture_Diagram_24at.png">
+</div>
 
 ### Data
 
@@ -77,7 +100,7 @@ InternationAlly bridges these gaps by providing tailored housing options, local 
 - **Multi-Shot Prompting**: Employed to convert user input into actionable queries for APIs like Zillow.
 - **Data Integration**: Combining various data sources to create a cohesive and comprehensive knowledge base.
 
----
+
 
 ## 3. User Interface 💻
 
@@ -87,31 +110,29 @@ InternationAlly bridges these gaps by providing tailored housing options, local 
 
 ### Demo
 
-- **Initial Search:** "I am looking for an 1 bedroom apartment close to Chicago downtown campus within 2200 dollars per month."
+[**Click here to watch the demo video**](Documents/Live_Demo.mp4)
 
-![response_1](images/response_with_UI.png)
 
-- **Initial Search:** "I am looking to purchase a house in Gold Coast, Chicago. I would like to have a minimum 3 bedrooms and 3 bathrooms. I want to pay less than $3,000,000."
+<div align="center">
+  <img src="Documents/Property_Search_Part_I.jpeg">
+</div>
 
-![response_1](images/response_1.png)
+<div align="center">
+  <img src="Documents/Property_Search_Part_II.jpeg">
+</div>
 
-- **Inquiry about a Specific Property:** "Can you tell me more about the house on Cedar St?"
+<div align="center">
+  <img src="Documents/Local_Advisor.jpeg">
+</div>
 
-![response_2](images/response_2.png)
+<div align="center">
+  <img src="Documents/International_Student_Advisor.jpeg">
+</div>
 
-- **Neighborhood Information:** "Which neighborhood is the third house located in? Tell me more about that neighborhood."
+<div align="center">
+  <img src="Documents/Other_follow_up_question_about_property.jpeg">
+</div>
 
-![response_3](images/response_3.png)
-
-- **Nearby Schools:** "What are some good schools nearby the third house?"
-
-![response_4](images/response_4.png)
-
-- **Restaurant Recommendations:** "What restaurants are nearby the house? Please provide me with the yelp link"
-
-![response_5](images/response_5.png)
-
----
 
 ## 4. Evaluation & Testing 📊
 
@@ -184,7 +205,6 @@ Participants were informed about the purpose and consented to provide feedback.
 
 This comprehensive evaluation and testing process allowed us to refine InternationAlly, ensuring it meets the needs of international students by providing accurate, relevant, and empathetic support throughout their transition.
 
----
 
 ## 5. Differentiators ✨
 
@@ -206,7 +226,6 @@ Over the past several months, the capabilities of foundational Large Language Mo
 
 In summary, while foundational LLMs have become more capable, InternationAlly offers a level of personalization, empathy, and specialized knowledge that sets it apart. Our focus on the unique journey of international students makes us an indispensable ally in navigating the complexities of moving abroad.
 
----
 
 ## 6. Future Work 🚀
 
@@ -222,7 +241,10 @@ In summary, while foundational LLMs have become more capable, InternationAlly of
 - **Partnerships**:
   - Collaborate with universities, housing providers, and service companies to offer exclusive benefits to users.
 
----
+<div align="center">
+  <img src="Documents/Expansion_Plan.jpg">
+</div>
+
 
 ## 7. Conclusion 🎓
 
@@ -230,7 +252,7 @@ In summary, while foundational LLMs have become more capable, InternationAlly of
 
 Convert uncertainty into confidence with InternationAlly — your ally abroad.
 
----
+
 
 ## 8. References
 
@@ -244,7 +266,7 @@ Convert uncertainty into confidence with InternationAlly — your ally abroad.
   - Gemini 1.5 Pro LLM
   - Retrieval-Augmented Generation (RAG) methodology
 
----
+
 
 ## 9. Acknowledgements/About Us
 
