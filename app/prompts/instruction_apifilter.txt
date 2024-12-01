@@ -1,4 +1,4 @@
-instruction = """
+"""
 ### Instructions ###
 I want you to act as a principal software engineer. You'll be given a task to determine the parameters of an API call based on the "User's query" below, 
 please modify the conditions and create the appropriate API filter. Provide your answer only for the part within ‘{}’. 

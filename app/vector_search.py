@@ -4,23 +4,22 @@ import os
 from langchain_community.vectorstores import FAISS
 from langchain_openai import OpenAIEmbeddings
 from dotenv import load_dotenv
+from langchain.load import dumps, loads
 
-# Load environment variables
+
 load_dotenv()
 openai_api_key = os.getenv('OPENAI_API_KEY')
 if not openai_api_key:
     raise ValueError("OpenAI API key not found in environment variables")
 
+
 def load_vectordb(load_path: str, model: str = "text-embedding-3-small") -> FAISS:
     """
     Load FAISS vector database from disk using OpenAI embeddings.
-    
-    Args:
-        load_path: Path where the database is stored
-        model: OpenAI embedding model name
-    
-    Returns:
-        FAISS vector store object
+
+    :param load_path: str - Path where the database is stored.
+    :param model: str - OpenAI embedding model name (default: "text-embedding-3-small").
+    :return: FAISS - Vector store object.
     """
     try:
         # Initialize OpenAI embedding model
@@ -47,15 +46,12 @@ def search_similar_chunks(vectorstore: FAISS,
                          filter_dict: Optional[Dict] = None) -> List[Document]:
     """
     Search for similar chunks in the vector database.
-    
-    Args:
-        vectorstore: FAISS vector store
-        query: Search query string
-        k: Number of similar chunks to return
-        filter_dict: Optional metadata filters (e.g., {"source_type": "uchicago"})
-    
-    Returns:
-        List of similar Document objects
+
+    :param vectorstore: FAISS - FAISS vector store instance.
+    :param query: str - Search query string.
+    :param k: int - Number of similar chunks to return (default: 5).
+    :param filter_dict: Optional[Dict] - Optional metadata filters (e.g., {"source_type": "uchicago"}).
+    :return: List[Document] - List of similar Document objects.
     """
     try:
         if filter_dict:
@@ -82,15 +78,12 @@ def format_chunk_results(documents: List[Document],
                          max_content_length: Optional[int] = None) -> str:
     """
     Format search results into a readable string.
-    
-    Args:
-        documents: List of Document objects from search results
-        metadata_fields: List of metadata fields to include (None for all fields)
-        include_content: Whether to include the content in output
-        max_content_length: Maximum length of content to display (None for full content)
-    
-    Returns:
-        Formatted string of search results
+
+    :param documents: List[Document] - List of Document objects from search results.
+    :param metadata_fields: Optional[List[str]] - List of metadata fields to include (None for all fields).
+    :param include_content: bool - Whether to include the content in the output (default: True).
+    :param max_content_length: Optional[int] - Maximum length of content to display (None for full content).
+    :return: str - Formatted string of search results.
     """
     if not documents:
         return "No results found."
@@ -130,39 +123,30 @@ def format_chunk_results(documents: List[Document],
     return '\n'.join(output_parts)
 
 
-if __name__ == "__main__":
-    # Load the vector database
-    base_dir = os.path.dirname(__file__)
-    vectordb_path = os.path.join(base_dir, 'data', 'vectordb')
-    db = load_vectordb(vectordb_path)
-    
-    if db:
-        # Example searches with different queries
-        test_queries = [
-            "How can I obtain an SSN?",
-            "How is the F1 Visa process?",
-            "What insurance is provided by the University of Chicago?",
-            "What transportation options are available at UChicago?"
-        ]
-        
-        
-        # Try each query
-        for query in test_queries:
-            print(f"\n\nQUERY: {query}")
-            print("-"*50)
-            
-            # Search without filter
-            chunks = search_similar_chunks(
-                vectorstore=db,
-                query=query,
-                k=3
-                # filter_dict={"source_type": "uchicago"}
-            )
+def reciprocal_rank_fusion(results: list[list], k=60, top_n=5):
+    """
+    Perform reciprocal rank fusion for merging multiple lists of ranked documents.
+    Returns only the top_n documents.
 
-            chunks_formated = format_chunk_results(
-            chunks,
-            metadata_fields=['source', 'source_type'],
-            include_content=True
-            )
+    :param results: list[list] - Lists of ranked documents to merge.
+    :param k: int - Smoothing factor for rank scores (default: 60).
+    :param top_n: int - Number of top-ranked documents to return (default: 5).
+    :return: list - Merged and reranked list of top_n documents.
+    """
+    fused_scores = {}
 
-            print(chunks_formated)
+    for docs in results:
+        for rank, doc in enumerate(docs):
+            # Serialize doc to use as a dictionary key
+            doc_str = dumps(doc)
+            if doc_str not in fused_scores:
+                fused_scores[doc_str] = 0
+            fused_scores[doc_str] += 1 / (rank + k)
+        
+    reranked_results = [
+        (loads(doc), score)
+        for doc, score in sorted(fused_scores.items(), key=lambda x: x[1], reverse=True)
+    ]
+
+    # Return only the top_n documents
+    return [doc for doc, score in reranked_results[:top_n]]

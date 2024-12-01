@@ -1,19 +1,13 @@
 import json
-import pandas as pd
 import requests
-import geopandas as gpd
-from shapely.geometry import Point
 import os
 import requests
 from dotenv import load_dotenv
-# load_dotenv()
 
 env_path = os.path.join(os.path.dirname(__file__), '.env')
 load_dotenv(dotenv_path=env_path)
 
-
 zillow_api = os.getenv("ZILLOW_API_KEY")
-# Make a request to Zillow API
 url = "https://zillow-com1.p.rapidapi.com/propertyExtendedSearch"
 url_details = "https://zillow-com1.p.rapidapi.com/property"
 
@@ -68,13 +62,13 @@ def fetch_data_if_chicago(search_filter, url=url, headers=headers):
         return None
 
 
-def extract_properties(response, fields,  n=5):
+def extract_properties(response, n=5):
     """
     Extracts the top 'n' properties from the API response based on specified fields.
+    Handles both standard property data and buildings with nested units.
 
     :param response: Response object or dict - The API response containing property data.
     :param n: int - The number of top properties to extract.
-    :param fields: list - The fields to extract from each property.
     :return: list - A list of dictionaries, each representing a property with the specified fields.
     """
     base_url = "https://www.zillow.com"
@@ -83,17 +77,48 @@ def extract_properties(response, fields,  n=5):
         if not isinstance(response, dict):
             response = response.json()
 
-        # Extract the top 'n' properties based on the specified fields
+        # Extract properties
         top_properties = []
-        for prop in response['props'][:n]:
-            extracted_prop = {field: (base_url + prop['detailUrl'] if field == 'detailUrl' else prop.get(field, None)) for field in fields}
-            top_properties.append(extracted_prop)
+        for prop in response.get('props', []):
+            # If the property is a building with units
+            if prop.get('isBuilding') and 'units' in prop:
+                for unit in prop['units']:
+                    extracted_prop = {
+                        'address': f"{prop.get('buildingName', 'Unknown Building')}, {prop.get('address', 'Unknown Address')}",
+                        'price': unit.get('price'),
+                        'bedrooms': unit.get('beds'),
+                        'bathrooms': unit.get('baths', None),
+                        'detailUrl': base_url + prop.get('detailUrl', ''),
+                        'imgSrc': prop.get('imgSrc', None),
+                        'latitude': prop.get('latitude', None),
+                        'longitude': prop.get('longitude', None),
+                        'zpid': prop.get('zpid', None),
+                    }
+                    top_properties.append(extracted_prop)
+            # Standard property data
+            else:
+                extracted_prop = {
+                    'address': prop.get('address', 'Unknown Address'),
+                    'price': prop.get('price', None),
+                    'bedrooms': prop.get('bedrooms', None),
+                    'bathrooms': prop.get('bathrooms', None),
+                    'detailUrl': base_url + prop.get('detailUrl', ''),
+                    'imgSrc': prop.get('imgSrc', None),
+                    'latitude': prop.get('latitude', None),
+                    'longitude': prop.get('longitude', None),
+                    'zpid': prop.get('zpid', None),
+                }
+                top_properties.append(extracted_prop)
 
-        return top_properties
+            # Stop if we've collected 'n' properties
+            if len(top_properties) >= n:
+                break
+
+        return top_properties[:n]
 
     except Exception as e:
         print("An error occurred:", e)
-        return []  # Return an empty list in case of an error
+        return []
 
 
 def fetch_descriptions(properties, headers=headers, url_details=url_details):
@@ -169,67 +194,19 @@ def fetch_schools(properties, headers=headers):
     return properties
 
 
-def fetch_neighborhood(top_properties, neighborhoods):
-    """
-    Identifies and appends the neighborhood for each property based on its location.
-
-    :param top_properties: list - A list of dictionaries representing properties.
-    :param neighborhoods: GeoDataFrame - The GeoDataFrame containing neighborhood boundaries.
-    :return: list - The updated list of properties with neighborhood information appended.
-    """
-    for i in range(0, len(top_properties)):
-        latitude = top_properties[i]['latitude']
-        longitude = top_properties[i]['longitude']
-        point = gpd.GeoDataFrame([{'geometry': Point(longitude, latitude)}], crs='EPSG:4326')
-        point = point.to_crs(neighborhoods.crs)
-        point_in_neighborhood = gpd.sjoin(point, neighborhoods, how="inner", op='intersects')
-        neighborhood = point_in_neighborhood['pri_neigh'].values[0]
-        top_properties[i]['neighborhood'] = neighborhood
-    return top_properties
-
-
-def fetch_neighborhood_info(top_properties, neighborhood_info):
-    """
-    Appends neighborhood descriptions to each property.
-
-    :param top_properties: list - A list of property dictionaries with neighborhood information.
-    :param neighborhood_info: DataFrame - A DataFrame containing neighborhood descriptions.
-    :return: list - The updated list of properties with neighborhood descriptions included.
-    """
-    neighborhood_info['neighborhood'] = neighborhood_info['neighborhood'].str.strip()
-    for i in range(0, len(top_properties)):
-        neighborhood = top_properties[i]['neighborhood']
-        try:
-            neighborhood_description = neighborhood_info[neighborhood_info['neighborhood'] == neighborhood]['neighborhood_information'].values[0]
-        except:
-            neighborhood_description = 'Neighborhood description is not found.'
-        top_properties[i]['neighborhood_description'] = neighborhood_description
-    return top_properties
-
-
-# def format_properties(properties, fields):
-#     """
-#     Formats property information into a human-readable string based on specified fields.
-
-#     :param properties: list - A list of dictionaries, each representing a property.
-#     :param fields: list - A list of fields to be extracted and formatted from each property.
-#     :return: str - A string with the formatted property details, with each property separated by a blank line.
-#     """
-#     formatted_properties = []
-#     for prop in properties:
-#         # Format and concatenate each field of each property
-#         formatted_prop = ', '.join(f"{field.capitalize().replace('_', ' ')}: {prop.get(field, 'N/A')}" for field in fields)
-#         formatted_properties.append(formatted_prop)
-#     return '\n\n'.join(formatted_properties)
-
-
 def fetch_top_properties_detail(api_filter, url=url, headers=headers):
+    """
+    Fetches detailed information for the top properties based on the given API filter.
+
+    :param api_filter: dict - Query parameters to filter the properties from the Zillow API.
+    :param url: str - The API endpoint URL (default is set to the Zillow property search endpoint).
+    :param headers: dict - HTTP headers containing authentication and other details.
+    :return: list - A list of top properties with detailed information, including descriptions, resoFacts, and school info.
+    """
     response = requests.get(url, headers = headers, params = api_filter)
     
-    # get top 3 listings(sorted by newest)
-    # Define fields to extract
-    fields = ["propertyType", "address", "price", "bedrooms", "bathrooms", "detailUrl", "imgSrc", "longitude", "latitude"]
-    top_properties = extract_properties(response, fields)
+    # get top 5 listings(sorted by newest)
+    top_properties = extract_properties(response)
     
     # get description of the properties
     top_properties = fetch_descriptions(top_properties)

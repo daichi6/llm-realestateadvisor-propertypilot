@@ -3,7 +3,7 @@
 </div>
 
 <div align="center">
-  <img src="Documents/InternationAlly%20logo.png" alt="InternationAlly" width="200">
+  <img src="documents/InternationAlly%20logo.png" alt="InternationAlly" width="200">
 </div>
 
 
@@ -11,19 +11,23 @@
 
 
 ## Table of Contents
-- [1. Motivation](#1-motivation)
+- [1. Motivation 🌎](#1-motivation-)
   - [Background](#background)
   - [Common Challenges Faced by International Students](#common-challenges-faced-by-international-students)
-  - [Goals](#goals)
-  - [Differentiators](#differentiators)
-- [2. Overview of InternationAlly](#2-overview-of-internationally)
+  - [Goals & Value Proposition](#goals--value-proposition)
+- [2. Overview of InternationAlly 🗺️](#2-overview-of-internationally-%EF%B8%8F)
   - [Data](#data)
   - [Key Features](#key-features)
   - [Methodology](#methodology)
-- [4. Evaluation & Testing](#4-evaluation--testing)
-- [5. User Interface ](#5-user-interface)
-- [6. Future Work](#6-future-work)
-- [7. Conclusion](#7-conclusion)
+- [3. User Interface 💻](#3-user-interface-)
+  - [Application](#application)
+  - [Demo](#demo)
+- [4. Evaluation & Testing 📊](#4-evaluation--testing-)
+  - [Evaluation Framework and Results](#evaluation-framework-and-results)
+  - [User Testing](#user-testing)
+- [5. Differentiators ✨](#5-differentiators-)
+- [6. Future Work 🚀](#6-propertypilots-vision-future-work-and-expansion-)
+- [7. Conclusion 🎓](#7-conclusion-)
 - [8. References](#8-references)
 - [9. Acknowledgements/About Us](#9-acknowledgementsabout-us)
 
@@ -35,14 +39,14 @@
 Our project, InternationAlly, was inspired by the personal experiences of our team—three international students who faced common challenges while studying abroad. From finding affordable housing and navigating unfamiliar cities to understanding visa requirements, we struggled to find reliable resources to answer our questions. This inspired us to develop a chatbot solution that could help international students with these issues. 
 
 <div align="center">
-  <img src="Documents/Problem_Statement_I.jpg">
+  <img src="documents/Problem_Statement_I.jpg">
 </div>
 
 
 Research shows that international student enrollment in the U.S. is rapidly growing, with over 1.5 million students, contributing significantly to the economy. This expanding student population highlights a clear demand for solutions like InternationAlly. By providing accessible, smart support, InternationAlly aims to help international students navigate both academic and everyday challenges.
 
 <div align="center">
-  <img src="Documents/Problem_Statement_II.jpg">
+  <img src="documents/Problem_Statement_II.jpg">
 </div>
 
 
@@ -54,7 +58,7 @@ Research shows that international student enrollment in the U.S. is rapidly grow
 - **Logistical Issues**: Setting up bank accounts, getting health insurance, finding transportation options, and more.
 
 <div align="center">
-  <img src="Documents/Problem_Statement_III.jpg">
+  <img src="documents/Problem_Statement_III.jpg">
 </div>
 
 InternationAlly bridges these gaps by providing tailored housing options, local insights, and essential support throughout a student's move.
@@ -68,14 +72,14 @@ InternationAlly bridges these gaps by providing tailored housing options, local 
 - Act as a **trusted friend and advisor**, simplifying the complexities of moving abroad.
 
 <div align="center">
-  <img src="Documents/InternationAlly_Intro.jpg">
+  <img src="documents/InternationAlly_Intro.jpg">
 </div>
 
 
 ## 2. Overview of InternationAlly 🗺️
 
 <div align="center">
-  <img src="Documents/Architecture_Diagram_24at.png">
+  <img src="documents/Architecture_Diagram_24at.png">
 </div>
 
 ### Data
@@ -83,23 +87,20 @@ InternationAlly bridges these gaps by providing tailored housing options, local 
 - **Housing Data**: Aggregated from platforms like Zillow, tailored to meet the preferences of international students.
 - **Local Information**: Collected from reliable sources to provide insights into neighborhoods, schools, transportation, and cultural hotspots.
 - **Legal and Logistical Content**: Curated from official websites and verified resources to offer accurate guidance on visas, legal rights, and essential services.
-- **Cultural Resources**: Compiled from blogs, forums, and community guides to assist with cultural adaptation.
+
 
 ### Key Features
 
 - **Efficient Housing Search**: Natural language property search converting user input into specific filters.
 - **Comprehensive Guidance**: Offers legal, cultural, and logistical support to help students adapt to their new environment.
-- **Multilingual Support**: Provides assistance in multiple languages to cater to non-native English speakers.
-- **Personalized Assistance**: AI-driven recommendations and advice tailored to individual needs and preferences.
-- **Community Connection**: Facilitates connections with other international students and local communities.
+- **Personalized Assistance**: AI-driven recommendations and advice tailored to individual needs and preferences, based on the user's profile.
 
 ### Methodology
 
-- **Retrieval-Augmented Generation (RAG)**: Implemented to provide accurate and context-specific information by integrating a language model with a retrieval system.
-- **Large Language Models (LLMs)**: Utilizing Gemini 1.5 Pro for natural language understanding and generation.
-- **Multi-Shot Prompting**: Employed to convert user input into actionable queries for APIs like Zillow.
-- **Data Integration**: Combining various data sources to create a cohesive and comprehensive knowledge base.
-
+- **Large Language Models (LLMs)**: Leveraged Gemini 1.5 Flash for natural language understanding and generation. By using the Flash model, we successfully reduced latency compared to the Pro model.
+- **Multi-Shot Prompting**: Applied multi-shot prompting to convert user input into actionable queries for APIs like Zillow and Google. This approach allowed us to process complex free-form text from users and transform it into the appropriate format for these APIs. By iteratively using LLMs for specific tasks, we ensured consistent and accurate outputs.
+- **Retrieval-Augmented Generation (RAG)**: Integrated a language model with a retrieval system to provide accurate and context-specific information. Using the University of Chicago website as a reliable data source, we built a RAG system to deliver trustworthy information for international students. By incorporating RAG Fusion techniques such as Query Rewriting and Re-ranking, we significantly enhanced accuracy. Additionally, responses included links for fact validation, and hallucination was minimized through carefully crafted prompts.
+- **API Integration**: Leveraged APIs to ensure users always have access to the latest, most reliable information.
 
 
 ## 3. User Interface 💻
@@ -110,27 +111,27 @@ InternationAlly bridges these gaps by providing tailored housing options, local 
 
 ### Demo
 
-[**Click here to watch the demo video**](Documents/Live_Demo.mp4)
+[**Click here to watch the demo video**](documents/Live_Demo.mp4)
 
 
 <div align="center">
-  <img src="Documents/Property_Search_Part_I.jpeg">
+  <img src="documents/Property_Search_Part_I.jpeg">
 </div>
 
 <div align="center">
-  <img src="Documents/Property_Search_Part_II.jpeg">
+  <img src="documents/Property_Search_Part_II.jpeg">
 </div>
 
 <div align="center">
-  <img src="Documents/Local_Advisor.jpeg">
+  <img src="documents/Local_Advisor.jpeg">
 </div>
 
 <div align="center">
-  <img src="Documents/International_Student_Advisor.jpeg">
+  <img src="documents/International_Student_Advisor.jpeg">
 </div>
 
 <div align="center">
-  <img src="Documents/Other_follow_up_question_about_property.jpeg">
+  <img src="documents/Other_follow_up_question_about_property.jpeg">
 </div>
 
 
@@ -171,7 +172,7 @@ The evaluator was provided with [this structured prompt](evaluation/llm_evaluato
 
 **Evaluation Results**
 
-![Evaluation Results](images/Evaluation_Score_chart.png)
+![Evaluation Results](evaluation/Evaluation_Score_chart.png)
 
 This bar chart illustrates the performance of each feature across the evaluation metrics. Overall, InternationAlly performs consistently well across most metrics, with scores typically ranging between 70 and 100. With high performance across features, Clarity and Tone & Empathy are InternationAlly's forte. However, our evaluation also helped to highlight the areas where InternationAlly still has room for improvement.
 
@@ -200,8 +201,10 @@ Participants were informed about the purpose and consented to provide feedback.
 
 **User Feedback**
 - Users appreciated the personalized assistance and found the app helpful for planning their move.
+  - "The thing I like most about the app is how easy it is to interact with, by simply telling it what I need. I also like how it ask me follow up questions. It really helps because sometimes I forget to include all my requirements."
 - Helped to idenify areas where responses lacked accuracy or completeness, especially in legal and logistical guidance. This helped us to refine prompts and prioritize new data sources to add.
 - Received great suggestions for ways to improve the navigation and visual appeal of the app to enhance the user experience
+ - "I think somehow showing the user the different features of the app (either with sample questions like chatgpt or a separate landing page that explains the function of the app more) could help users make the most of it."
 
 This comprehensive evaluation and testing process allowed us to refine InternationAlly, ensuring it meets the needs of international students by providing accurate, relevant, and empathetic support throughout their transition.
 
@@ -224,25 +227,43 @@ Over the past several months, the capabilities of foundational Large Language Mo
 
 4. **Specialized Focus:** InternationAlly is purpose-built for international students, addressing their specific challenges and needs.  Unlike generic real estate platforms or LLMs that provide broad information, InternationAlly offers specialized support in housing, legal guidance, cultural adaptation, and logistical assistance—all in one place.
 
+**Comparison with Gemini 1.5 Pro:**
+<div style="display: flex; justify-content: space-between;">
+  <img src="documents\Ally_Gemini_Comp_Part_I.png" alt="Ally 1" width="400" />
+  <img src="documents\Gemini_Example_Part_I.png" alt="Gemini 1" width="400" />
+</div>
+
+<div style="display: flex; justify-content: space-between;">
+  <img src="documents\Ally_Gemini_Comp_Part_II.png" alt="Ally II" width="400" />
+  <img src="documents\Gemini_Example_Part_II.png" alt="Gemini II" width="400" />
+</div>
+
+ InternationAlly's recommendations for studio apartments near NBC Tower reflect a deeper understanding of international students' needs. Unlike general-purpose LLMs, which often offer broad suggestions based on proximity or price, InternationAlly delivers detailed, empathetic, and actionable advice. For example, while Google Gemini also found apartments with ratings and links, InternationAlly highlights factors like transportation, cultural adaptation, and local community benefits. Additionally, the tone is warm and encouraging, acknowledging the user's journey and providing context, such as the importance of proximity to campus and public transit. This tailored approach ensures students feel supported and understood during their housing search.
+
 In summary, while foundational LLMs have become more capable, InternationAlly offers a level of personalization, empathy, and specialized knowledge that sets it apart. Our focus on the unique journey of international students makes us an indispensable ally in navigating the complexities of moving abroad.
 
 
-## 6. Future Work 🚀
+## 6. PropertyPilot's Vision: Future Work and Expansion 🚀
 
-- **PropertyPilot's Vision: Expanded Product Offerings**
-  - Develop additional specialized agents catering to diverse user groups such as first-time homebuyers, recent graduates, and military families.
-  - Create an integrated platform where users can access tailored real estate assistance.
-- **Expand Cities/Schools**:
-  - Extend InternationAlly's services to other major cities and universities across the United States and eventually globally.
-- **Enhanced AI Capabilities**:
-  - Integrate more advanced AI models to improve personalization and accuracy.
-- **Community Features**:
-  - Introduce forums and events to foster community among international students.
-- **Partnerships**:
-  - Collaborate with universities, housing providers, and service companies to offer exclusive benefits to users.
+- **Geographical Expansion**:
+  - Extend InternationAlly's services to major student hubs such as California, New York, and Texas, adopting a school-by-school strategy.
+  - Partner with universities to incorporate school-specific resources like housing guides, campus information, and local amenities.
+  - Plan for eventual global expansion to support international students and professionals worldwide.
+- **Diversified Product Offerings**
+  - Develop additional specialized agents tailored to diverse user groups, including first-time homebuyers, recent graduates, single parents, retirees, and military families.
+  - Build an integrated platform where users can seamlessly access customized real estate assistance, roommate matching, and other tailored features.
+- **Enhanced Personalization and Accessibility**:
+  - Leverage advanced AI models to improve personalization, accuracy, and user engagement.
+  - Introduce multi-lingual support to improve accessibility for non-native speakers and ease transitions for international users.
+- **Community Building**:
+  - Launch forums, events, and networking opportunities to foster connections among users, such as international students, local professionals, and community groups.
+  - Introduce roommate matching and community features to strengthen ties and provide collaborative living solutions.
+- **Strategic Partnerships**:
+  - Collaborate with universities, housing providers, and service companies to offer exclusive benefits, such as discounts, priority services, and tailored resources.
+  - Establish partnerships with relocation services to support users through every step of their move.
 
 <div align="center">
-  <img src="Documents/Expansion_Plan.jpg">
+  <img src="documents/Expansion_Plan.jpg">
 </div>
 
 
@@ -256,16 +277,24 @@ Convert uncertainty into confidence with InternationAlly — your ally abroad.
 
 ## 8. References
 
-- **Data Sources**:
-  - Zillow API
-  - Local government and university websites
-  - Cultural blogs and forums
-  - Neighborhood safety information from resources like NeighborhoodScout
-
 - **Technologies Used**:
-  - Gemini 1.5 Pro LLM
-  - Retrieval-Augmented Generation (RAG) methodology
+  - LLM: Gemini 1.5 Flash
+  - Retrieval-Augmented Generation (RAG)
+    - Vector Database: FAISS
+    - Embedding Model: OpenAI (text-embedding-3-small)
+  - Cloud Platform: Google Cloud Platform (GCP)
+  - Containerization: Docker
 
+
+- **Data Sources**:
+  - Property Search: Zillow API
+  - Local Information: Google Maps Platform APIs
+    - Maps JavaScript API
+    - Places Text Search API
+  - RAG: University of Chicago Websites
+
+- **Code Details**:
+For more information on how the code is structured and the purpose of each file, please refer to the [Code Structure Documentation](./app/code_structure.md).
 
 
 ## 9. Acknowledgements/About Us
