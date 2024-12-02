@@ -16,9 +16,9 @@
   - [Common Challenges Faced by International Students](#common-challenges-faced-by-international-students)
   - [Goals & Value Proposition](#goals--value-proposition)
 - [2. Overview of InternationAlly 🗺️](#2-overview-of-internationally-%EF%B8%8F)
-  - [Data](#data)
   - [Key Features](#key-features)
   - [Methodology](#methodology)
+  - [Data](#data)
 - [3. User Interface 💻](#3-user-interface-)
   - [Application](#application)
   - [Demo](#demo)
@@ -67,9 +67,12 @@ InternationAlly bridges these gaps by providing tailored housing options, local 
 
 **InternationAlly** aims to:
 
-- Provide an **efficient and comprehensive** way for international students to secure housing.
-- Offer **guidance** on legal, cultural, and logistical matters to help students adapt smoothly.
-- Act as a **trusted friend and advisor**, simplifying the complexities of moving abroad.
+- Provide an **efficient, user-friendly platform** for international students to explore and secure housing options tailored to their unique needs.
+- Offer **tailored, local advice** that considers unique regional contexts, helping students connect with their new communities and access the most relevant services and amenities.
+- Deliver **reliable guidance** on navigating legal, cultural, and logistical challenges, empowering students to adapt seamlessly to their new environment.
+- Serve as a **trusted companion**, blending empathy and expertise to simplify the complexities of moving abroad and ensuring students feel supported every step of the way.
+
+Together, these goals ensure that InternationAlly provides a holistic and user-focused solution for international students navigating the challenges of moving abroad.
 
 <div align="center">
   <img src="documents/InternationAlly_Intro.jpg">
@@ -82,18 +85,13 @@ InternationAlly bridges these gaps by providing tailored housing options, local 
   <img src="documents/Architecture_Diagram_24at.png">
 </div>
 
-### Data
-
-- **Housing Data**: Aggregated from platforms like Zillow, tailored to meet the preferences of international students.
-- **Local Information**: Collected from reliable sources to provide insights into neighborhoods, schools, transportation, and cultural hotspots.
-- **Legal and Logistical Content**: Curated from official websites and verified resources to offer accurate guidance on visas, legal rights, and essential services.
-
 
 ### Key Features
 
-- **Efficient Housing Search**: Natural language property search converting user input into specific filters.
-- **Comprehensive Guidance**: Offers legal, cultural, and logistical support to help students adapt to their new environment.
-- **Personalized Assistance**: AI-driven recommendations and advice tailored to individual needs and preferences, based on the user's profile.
+- **Housing Search:** Seamlessly search for housing tailored to international students' needs. The system converts free-form user input into specific filters for finding ideal properties using the Zillow API. Listings include detailed insights on proximity to universities, transportation options, and local amenities.
+- **Local Advice:** Receive curated recommendations for essential services and popular destinations. From grocery stores to cultural hotspots, the app leverages Google Maps APIs to deliver advice tailored to users’ preferences and location, helping them navigate their new environment with confidence.
+- **International Student Guidance:** Navigate the complexities of moving abroad with comprehensive support on legal, cultural, and logistical matters. Whether it’s understanding visa requirements, setting up a bank account, or adapting to local customs, InternationAlly offers step-by-step guidance backed by trusted resources.
+- **Interactive Google Map:** Explore housing and local amenities through an embedded interactive Google Map. By plotting results from the property search and local advisor features, this tool helps users visualize everything more intuitively for better decision-making.
 
 ### Methodology
 
@@ -101,6 +99,12 @@ InternationAlly bridges these gaps by providing tailored housing options, local 
 - **Multi-Shot Prompting**: Applied multi-shot prompting to convert user input into actionable queries for APIs like Zillow and Google. This approach allowed us to process complex free-form text from users and transform it into the appropriate format for these APIs. By iteratively using LLMs for specific tasks, we ensured consistent and accurate outputs.
 - **Retrieval-Augmented Generation (RAG)**: Integrated a language model with a retrieval system to provide accurate and context-specific information. Using the University of Chicago website as a reliable data source, we built a RAG system to deliver trustworthy information for international students. By incorporating RAG Fusion techniques such as Query Rewriting and Re-ranking, we significantly enhanced accuracy. Additionally, responses included links for fact validation, and hallucination was minimized through carefully crafted prompts.
 - **API Integration**: Leveraged APIs to ensure users always have access to the latest, most reliable information.
+
+### Data
+
+- **Housing Data**: Real-time listing information retrieved from Zillow via the [Rapid Zillow.Com API](https://rapidapi.com/apimaker/api/zillow-com1).
+- **Local Information**: Real-time Google Search results retrieved via the [Google Maps Platform Text Search API](https://developers.google.com/maps/documentation/places/web-service/search-text). Results provide insights into businesses, neighborhoods, schools, transportation, and cultural hotspots.
+- **Legal and Logistical Content**: Curated from [University and Government websites](documents\international_advisor_data_sources.txt) to offer accurate guidance on visas, legal rights, and essential services.
 
 
 ## 3. User Interface 💻

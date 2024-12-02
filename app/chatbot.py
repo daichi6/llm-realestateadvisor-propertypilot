@@ -14,7 +14,7 @@ from llm import get_chat_response
 from vector_search import search_similar_chunks, format_chunk_results, reciprocal_rank_fusion
 import json
 
-GOOGLE_MAPS_API_KEY = os.getenv("DEV_GOOGLE_MAP_API_KEY")
+GOOGLE_MAPS_API_KEY = os.getenv("PROD_GOOGLE_MAP_API_KEY")
 
 
 # initial intent classifier
