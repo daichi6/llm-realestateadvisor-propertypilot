@@ -232,17 +232,17 @@ Over the past several months, the capabilities of foundational Large Language Mo
 4. **Specialized Focus:** InternationAlly is purpose-built for international students, addressing their specific challenges and needs.  Unlike generic real estate platforms or LLMs that provide broad information, InternationAlly offers specialized support in housing, legal guidance, cultural adaptation, and logistical assistance—all in one place.
 
 **Comparison with Gemini 1.5 Pro:**
-<div style="display: flex; justify-content: space-between;">
-  <img src="documents\Ally_Gemini_Comp_Part_I.png" alt="Ally 1" width="400" />
-  <img src="documents\Gemini_Example_Part_I.png" alt="Gemini 1" width="400" />
-</div>
+![Ally 1](documents/Ally_Gemini_Comp_Part_I.png)
+![Gemini 1](documents/Gemini_Example_Part_I.png)
 
 <div style="display: flex; justify-content: space-between;">
   <img src="documents\Ally_Gemini_Comp_Part_II.png" alt="Ally II" width="400" />
   <img src="documents\Gemini_Example_Part_II.png" alt="Gemini II" width="400" />
 </div>
 
- InternationAlly's recommendations for studio apartments near NBC Tower reflect a deeper understanding of international students' needs. Unlike general-purpose LLMs, which often offer broad suggestions based on proximity or price, InternationAlly delivers detailed, empathetic, and actionable advice. For example, while Google Gemini also found apartments with ratings and links, InternationAlly highlights factors like transportation, cultural adaptation, and local community benefits. Additionally, the tone is warm and encouraging, acknowledging the user's journey and providing context, such as the importance of proximity to campus and public transit. This tailored approach ensures students feel supported and understood during their housing search.
+ InternationAlly's recommendations for studio apartments near NBC Tower reflect a deeper understanding of international students' needs. Unlike general-purpose LLMs, which often offer broad suggestions based on proximity, InternationAlly delivers detailed, empathetic, and actionable advice. For example, while General Google Gemini also found apartments with ratings and links, InternationAlly highlights factors like transportation, cultural adaptation, and local community benefits. Additionally, the tone is warm and encouraging, acknowledging the user's journey and providing context, such as the importance of proximity to campus and public transit. This tailored approach ensures students feel supported and understood during their housing search.
+ Additionally, InternationAlly leverages the Zillow API to provide accurate and detailed responses to user requests, including property prices, sizes, and additional features such as laundry facilities and balconies. This level of precision and depth in information is beyond the scope of general models like Google Gemini, making InternationAlly a more comprehensive and reliable resource.
+
 
 In summary, while foundational LLMs have become more capable, InternationAlly offers a level of personalization, empathy, and specialized knowledge that sets it apart. Our focus on the unique journey of international students makes us an indispensable ally in navigating the complexities of moving abroad.
 
