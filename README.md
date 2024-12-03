@@ -19,6 +19,7 @@
   - [Key Features](#key-features)
   - [Methodology](#methodology)
   - [Data](#data)
+  - [Code Structure](#code-structure)
 - [3. User Interface 💻](#3-user-interface-)
   - [Application](#application)
   - [Demo](#demo)
@@ -26,10 +27,12 @@
   - [Evaluation Framework and Results](#evaluation-framework-and-results)
   - [User Testing](#user-testing)
 - [5. Differentiators ✨](#5-differentiators-)
+  - [Comparison with Gemini 1.5 Pro](#comparison-with-gemini-15-pro)
 - [6. Future Work 🚀](#6-propertypilots-vision-future-work-and-expansion-)
 - [7. Conclusion 🎓](#7-conclusion-)
-- [8. References](#8-references)
-- [9. Acknowledgements/About Us](#9-acknowledgementsabout-us)
+- [8. Tools Used 🛠️](#8-tools-used-%EF%B8%8F)
+- [9. References 📚](#9-references-)
+- [10. Acknowledgements/About Us 👤](#10-acknowledgementsabout-us-)
 
   
 ## 1. Motivation 🌎
@@ -104,7 +107,12 @@ Together, these goals ensure that InternationAlly provides a holistic and user-f
 
 - **Housing Data**: Real-time listing information retrieved from Zillow via the [Rapid Zillow.Com API](https://rapidapi.com/apimaker/api/zillow-com1).
 - **Local Information**: Real-time Google Search results retrieved via the [Google Maps Platform Text Search API](https://developers.google.com/maps/documentation/places/web-service/search-text). Results provide insights into businesses, neighborhoods, schools, transportation, and cultural hotspots.
-- **Legal and Logistical Content**: Curated from [University and Government websites](documents\international_advisor_data_sources.txt) to offer accurate guidance on visas, legal rights, and essential services.
+- **Maps**: Embedded Google Maps created using [Google Maps Platform JavaScript API](https://developers.google.com/maps/documentation/javascript).
+- **Legal and Logistical Content**: Curated from [University of Chicago and Government websites](documents\international_advisor_data_sources.txt) to offer accurate guidance on visas, legal rights, and essential services.
+
+### Code Structure
+
+- For more information on how the code is structured and the purpose of each file, please refer to the [Code Structure Documentation](./app/code_structure.md).
 
 
 ## 3. User Interface 💻
@@ -231,7 +239,7 @@ Over the past several months, the capabilities of foundational Large Language Mo
 
 4. **Specialized Focus:** InternationAlly is purpose-built for international students, addressing their specific challenges and needs.  Unlike generic real estate platforms or LLMs that provide broad information, InternationAlly offers specialized support in housing, legal guidance, cultural adaptation, and logistical assistance—all in one place.
 
-**Comparison with Gemini 1.5 Pro:**
+### Comparison with Gemini 1.5 Pro:
 ![Ally 1](documents/Ally_Gemini_Comp_Part_I.png)
 ![Gemini 1](documents/Gemini_Example_Part_I.png)
 
@@ -278,39 +286,51 @@ In summary, while foundational LLMs have become more capable, InternationAlly of
 Convert uncertainty into confidence with InternationAlly — your ally abroad.
 
 
+## 8. Tools Used 🛠️
 
-## 8. References
-
-- **Technologies Used**:
-  - LLM: Gemini 1.5 Flash
-  - Retrieval-Augmented Generation (RAG)
-    - Vector Database: FAISS
-    - Embedding Model: OpenAI (text-embedding-3-small)
-  - Cloud Platform: Google Cloud Platform (GCP)
-  - Containerization: Docker
-
-
-- **Data Sources**:
-  - Property Search: Zillow API
-  - Local Information: Google Maps Platform APIs
-    - Maps JavaScript API
-    - Places Text Search API
-  - RAG: University of Chicago Websites
-
-- **Code Details**:
-For more information on how the code is structured and the purpose of each file, please refer to the [Code Structure Documentation](./app/code_structure.md).
+| **Category**         | **Tool/Technology**                                                                                                                                                  |
+|-----------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Programming Language  | ![Python](https://img.shields.io/badge/Python-3776AB?logo=python&logoColor=yellow)                                                                                  |
+| Large Language Model (LLM) | ![Google Gemini 1.5 Flash](https://img.shields.io/badge/Google_Gemini_1.5_Flash-4285F4?logo=google&logoColor=white)                                                |
+| Embedding Model       | ![OpenAI text embedding 3 small](https://img.shields.io/badge/OpenAI-white?logo=openai&logoColor=black)                                                        |
+| Data Visualization    | ![Matplotlib](https://img.shields.io/badge/Matplotlib-0C479C?logo=python&logoColor=yellow) ![Seaborn](https://img.shields.io/badge/Seaborn-023047?logo=python&logoColor=yellow) |
+| API Integration       | ![Rapid API](https://img.shields.io/badge/Rapid_API-3B82F6?logo=rapidapi&logoColor=white) ![Google Maps API](https://img.shields.io/badge/Google_Maps_API-4285F4?logo=googlemaps&logoColor=white) |
+| Frontend Framework    | ![Streamlit](https://img.shields.io/badge/Streamlit-FF4B4B?logo=streamlit&logoColor=white)                                                                          |
+| Vector Database       | ![FAISS](https://img.shields.io/badge/FAISS-lightgrey?logo=meta&logoColor=blue)                                                                                    |
+| Cloud Platform        | ![Google Cloud Platform (GCP)](https://img.shields.io/badge/Google_Cloud-4285F4?logo=googlecloud&logoColor=white)                                                  |
+| Containerization      | ![Docker](https://img.shields.io/badge/Docker-2496ED?logo=docker&logoColor=white)                                                                                  |
+| Design                | ![Figma](https://img.shields.io/badge/Figma-F24E1E?logo=figma&logoColor=white) ![draw.io](https://img.shields.io/badge/Draw.io-0678BE?logo=drawio&logoColor=white) |
+| Project Management    | ![Trello](https://img.shields.io/badge/Trello-darkblue?logo=trello&logoColor=white)                                                                                  |
 
 
-## 9. Acknowledgements/About Us
+## 9. References 📚
+
+International Student Trends:
+https://www.boundless.com/research/international-students-studying-in-the-united-states-trends-and-impacts/
+
+Social Support and Acculturative Stress of International Students:
+https://pmc.ncbi.nlm.nih.gov/articles/PMC9180523/
+
+The U.S. and International Education Outlook 2030 Brief:
+https://www.iie.org/wp-content/uploads/2024/03/IIE_Outlook-2030_March-2024-1.pdf
+
+Gemini Price:
+https://cloud.google.com/vertex-ai/generative-ai/pricing
+
+Zillow API:
+https://rapidapi.com/apimaker/api/zillow-com1
+
+
+## 10. Acknowledgements/About Us 👤
 
 **InternationAlly** is developed by:
 
-- **Kshitiz Sahay** (sahayk@uchicago.edu)
-- **Daichi Ishikawa** (daichi@uchicago.edu)
-- **Yijing Sun** (yijingsun@uchicago.edu)
-- **William DeForest** (wdeforest@uchicago.edu)
+- **[Kshitiz Sahay](https://github.com/k-kshitiz)** (sahayk@uchicago.edu)
+- **[Daichi Ishikawa](https://github.com/daichi6)** (daichi@uchicago.edu)
+- **[Yijing Sun](https://github.com/Yijing-Data)** (yijingsun@uchicago.edu)
+- **[William DeForest](https://github.com/wdeforest23)** (wdeforest@uchicago.edu)
 
-**Advised by**:
+**We would like to thank our fantastic advisors:**
 
 - **Nick Kadochnikov**
 - **Egehan Yorulmaz**
@@ -318,4 +338,7 @@ For more information on how the code is structured and the purpose of each file,
 
 We are students in the Applied Data Science Master's program at the University of Chicago, working on this project as part of the Conversational AI Research Capstone Course.
 
+Contributions, feedback, and improvements are always welcome. Feel free to submit pull requests or raise issues.
+
+**InternationAlly** is licensed under the Apache 2.0 License. See the [LICENSE](LICENSE) file for more information.
 ---
