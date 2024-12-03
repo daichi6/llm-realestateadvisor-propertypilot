@@ -111,7 +111,7 @@ Together, these goals ensure that InternationAlly provides a holistic and user-f
 
 ### Application
 
-[**Link to Streamlit App**](https://property-pilot-app-617571939826.us-central1.run.app/)
+[**Link to Streamlit App**](https://property-pilot-app-final-617571939826.us-central1.run.app/)
 
 ### Demo
 
