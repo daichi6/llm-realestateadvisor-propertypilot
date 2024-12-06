@@ -35,8 +35,12 @@ def chat_app():
                     "us_insurance": "No",
                     "us_ssn": 'No',
                     "us_place_to_stay": "No",
-                    "us_other": "I love Japanese food."
+                    "us_other": "I love Japanese food.",
+                    "first_name": "John"
                 }
+        
+        if (current_user != "user1") and (current_user != 'user2'):
+            st.session_state.user_onboarding_data[current_user]["first_name"] = first_name
 
         print(st.session_state.user_onboarding_data)
 

@@ -1,69 +1,88 @@
 """
 ### Instructions ###
-I want you to act as a sentence classifier. Based on "User's query" below, classify it into one of the categories listed, and respond with an integer from 0 to 9. 
-Provide only the number as your answer. Do not include any other explanations in your response. Read the instructions below:
+You will act as a user query classifier. Based on the "User’s query" and the entire conversation history, classify the query into one of the categories listed below and respond with a single integer between 0 and 9.
+Your response should contain only the number. Do not include any additional text or explanation.
 
-First, if the previous conversation provides enough information to answer the question, return "0"
-(Even if the question is related to rentals, real estate, restaurant information, or Chicago local information, return "0" if sufficient information is already available in the conversation history or context.)
+Step 1: Check if the query is a follow-up to a previous question.
+- If the query does not ask for new information or actions, and the conversation history already contains enough information to directly answer the query, output 0.
+    - Examples include requests for clarification or confirming details about already-shared information.
+- If the query introduces new details, specifications, or a different focus, proceed to Step 2.
 
-Next, if the previous conversation doesn't provide enough information, follow the rules below:
-- If the question is about searching for rentals or real estate: output "1"
-- If the question is about finding local places (restuarants, stores, public transportation, essential services, etc.): output "2"
-- If the question relates to topics for university or international students, such as campus life, visas, SSNs, insurance, or setting up bank accounts, driver's licence, US culture, output "3".
-- For any other questions: output "9".
+Step 2: Classify the query based on its main topic.
+- Use the rules below to determine the appropriate category:
+    - 1: Property Search
+        - The query is about finding properties (e.g., rentals, purchases) or refining property searches with new criteria (e.g., neighborhood, budget, size).
+    - 2: Local Information
+        - The query is about finding local places such as restaurants, stores, public transport, or essential services in a specific area.
+    - 3: University/International Student Topics
+        - The query is related to topics like campus life, visas, SSNs, insurance, banking, driver's licenses, or adapting to U.S. culture.
+    - 9: Other
+        - Any query that does not fit the above categories, such as general knowledge, stock prices, or unrelated topics.
 
-Now, use the following query to determine the number (These examples assume that no conversation history or context exists).
+Examples:
 
-### Example query ###
-I want to buy a house in River North with at least two bedrooms.
+Example 1: Already Answered (0)
+Chat History:
+User: Can you show me apartments in River North?
+Bot: Here are some options in River North: [List of apartments].
+Query: Are these apartments pet-friendly?
+Output: 0
+Query: What is the HOA fee for Option 1?
+Output: 0
 
-### Example Output ###
-1
+Example 2: Already Answered (0)
+Chat History:
+User: Could you recommend some restaurants in Hyde Park?
+Bot: Here are some popular options: A10, Virtue, and Piccolo Mondo.
+Query: Are these restaurants vegetarian-friendly?
+Output: 0
+Query: Do any of these restaurants have outdoor seating?
+Output: 0
 
-### Example query ###
-I am looking for a rental around Wicker Park in Chicago with a gym and a pool. It should be built within the last 10 years.
+Example 3: Refining or Starting a New Property Search (1)
+Chat History:
+User: Can you show me apartments in River North?
+Bot: Here are some options in River North: [List of apartments].
+Query: Can you show me apartments for rent in Hyde Park under $2000?
+Output: 1
+Query: What about studios in Lincoln Park?
+Output: 1
 
-### Example Output ###
-1
+Example 4: Local Information (2)
+Chat History:
+User: Could you recommend restaurants in Hyde Park?
+Bot: Here are some Italian restaurants: [List of restaurants].
+Query: Are there any vegetarian restaurant options?
+Output: 2
+Query: What about grocery stores in the area?
+Output: 2
+Query: My parents are in town for the weekend. Please recommend some fun attractions to see while they are visiting.
+Output: 2
 
-### Example query ###
-Could you recommend an Italian restaurant in Hyde Park?
+Example 5: University/International Student Topics (3)
+Chat History:
+Query: I’m new to the U.S. and need to get a Social Security Number. Can you help?
+Output: 3
+Query: Where can I open a bank account as an international student?
+Output: 3
+Query: What types of health insurance are available for students at the University of Chicago?
+Output: 3
+Query: Can you explain how driver’s licenses work in Illinois?
+Output: 3
 
-### Example Output ###
-2
+Example 6: Other (9)
+Query: How is Amazon’s stock price doing?
+Output: 9
+Query: When was Llama 3 announced?
+Output: 9
+Query: What is the meaning of life?
+Output: 9
 
-### Example query ###
-Are there grocery stores nearby this apartment?
-
-### Example Output ###
-2
-
-
-### Example query ###
-How can I obtain an SSN?
-
-### Example Output ###
-3
-
-### Example query ###
-Where can international students open a bank account?
-
-### Example Output ###
-3
-
-
-### Example query ###
-When was Llama 3 announced?
-
-### Example Output ###
-0
-
-### Example query ###
-How is Amazon's stock price doing?
-
-### Example Output ###
-0
-
+Key Notes:
+- Distinguish between follow-ups and new topics. Queries introducing new neighborhoods, criteria, or topics are not "already answered" and should not be classified as 0.
+- Property searches can occur multiple times in a conversation. Classify each search (1) based on the specific criteria in the query.
+- Be specific with local context. For example, "restaurants" and "grocery stores" are local queries and should be classified as 2.
+- University and international student topics include anything related to adapting to life in the U.S., such as visas, documentation, cultural questions, or navigating student-specific needs.
 
 ### User’s query ###
 {USER_QUERY}
