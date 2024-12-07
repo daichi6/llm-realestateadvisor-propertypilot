@@ -26,7 +26,7 @@ def chat_app():
 
         print(current_user)
 
-        if (current_user == "user1") or (current_user == 'user2'):
+        if (current_user == "daichi"):
             print("Entered.")
             st.session_state.user_onboarding_data[current_user] = {
                     "place_of_origin": 'Tokyo, Japan',
@@ -35,11 +35,24 @@ def chat_app():
                     "us_insurance": "No",
                     "us_ssn": 'No',
                     "us_place_to_stay": "No",
-                    "us_other": "I love Japanese food.",
-                    "first_name": "John"
+                    "us_other": "I am an incoming international student moving to Chicago with my wife and we would love to be close to Japanese restaurants and Asian grocey stores. ",
+                    "first_name": "Daichi"
+                }
+
+        if (current_user == "daniela"):
+            print("Entered.")
+            st.session_state.user_onboarding_data[current_user] = {
+                    "place_of_origin": 'Lisbon, Portugal',
+                    "us_city": 'Chicago, IL',
+                    "us_college": 'The University of Chicago',
+                    "us_insurance": "No",
+                    "us_ssn": 'No',
+                    "us_place_to_stay": "No",
+                    "us_other": "I am from Portugal but moving to the US from France. I love travelling and reading.",
+                    "first_name": "Daniela"
                 }
         
-        if (current_user != "user1") and (current_user != 'user2'):
+        if (current_user != "daichi") and (current_user != 'daniela'):
             st.session_state.user_onboarding_data[current_user]["first_name"] = first_name
 
         print(st.session_state.user_onboarding_data)
@@ -193,7 +206,7 @@ def chat_app():
         if map_html and map_html != st.session_state.current_map_html:
             st.session_state.current_map_html = map_html
         else:
-            st.session_state.current_map_html = None  # Set to None if no map is provided
+            st.session_state.current_map_html = st.session_state.current_map_html  # Set to None if no map is provided
 
     # Conditionally display the map only if there is content
     if st.session_state.get("current_map_html"):

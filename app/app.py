@@ -9,7 +9,7 @@ from frontend.chatapp import chat_app
 
 # Load the API key for Google Maps from .env
 load_dotenv()
-GOOGLE_MAPS_API_KEY = os.getenv("PROD_GOOGLE_MAP_API_KEY")
+GOOGLE_MAPS_API_KEY = os.getenv("DEV_GOOGLE_MAP_API_KEY")
 
 # Page configuration
 st.set_page_config(page_title="InternationAlly", page_icon="ally-logo.png", layout="centered")
@@ -140,7 +140,7 @@ st.markdown("""
 
 # Initialize session states
 if "users" not in st.session_state:
-    st.session_state.users = {"user1": {"password": "password1"}, "user2": {"password": "password2"}}
+    st.session_state.users = {"daichi": {"password": "1111"}, "daniela": {"password": "1111"}}
 if "chat_histories" not in st.session_state:
     st.session_state.chat_histories = {}  # To store chat histories per user
 if "current_map_html" not in st.session_state:
